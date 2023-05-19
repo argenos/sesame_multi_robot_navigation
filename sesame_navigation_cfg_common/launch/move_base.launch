@@ -55,27 +55,12 @@
     <rosparam command="load" file="$(arg config_base_path)/config/base/global_planner/$(arg global_planner).yaml" subst_value="true"/>
     <rosparam command="load" file="$(arg config_base_path)/config/base/$(arg local_planner)/local_planner$(arg base_type_suffix).yaml" subst_value="true"/>
 
-    <param if="$(arg multiple)" name="global_costmap/global_frame" value="$(arg robot_namespace)/map"/>
-    <param if="$(arg multiple)" name="global_costmap/robot_base_frame" value="$(arg robot_namespace)/base_footprint"/>
-    <param if="$(arg multiple)" name="global_costmap/obstacle_laser_layer/base_scan/sensor_frame" value="$(arg robot_namespace)/base_laser_link"/>
-    <param if="$(arg multiple)" name="global_costmap/front_obstacle_laser_layer/base_scan/sensor_frame" value="$(arg robot_namespace)/base_front_laser_link"/> <!-- For omni base-->
-    <param if="$(arg multiple)" name="global_costmap/rear_obstacle_laser_layer/base_scan/sensor_frame" value="$(arg robot_namespace)/base_rear_laser_link"/> <!-- For omni base-->
-    <param if="$(arg multiple)" name="global_costmap/obstacle_rgbd_layer/rgbd_scan/sensor_frame" value="$(arg robot_namespace)/base_footprint"/>
     <param if="$(arg multiple)" name="global_costmap/obstacle_sonar_layer/sonar_cloud/sensor_frame" value="$(arg robot_namespace)/base_link"/>
     <param if="$(arg multiple)" name="global_costmap/obstacle_sonar_layer/sonar_max_range_cloud/sensor_frame" value="$(arg robot_namespace)/base_link"/>
-    <param if="$(arg multiple)" name="global_costmap/obstacle_vo_layer/vo_cloud/sensor_frame" value="$(arg robot_namespace)/base_link"/>
 
-    <param if="$(arg multiple)" name="local_costmap/global_frame" value="$(arg robot_namespace)/odom"/>
-    <param if="$(arg multiple)" name="local_costmap/robot_base_frame" value="$(arg robot_namespace)/base_footprint"/>
-    <param if="$(arg multiple)" name="local_costmap/obstacle_laser_layer/base_scan/sensor_frame" value="$(arg robot_namespace)/base_laser_link"/>
-    <param if="$(arg multiple)" name="local_costmap/front_obstacle_laser_layer/base_scan/sensor_frame" value="$(arg robot_namespace)/base_front_laser_link"/> <!-- For Omni base-->
-    <param if="$(arg multiple)" name="local_costmap/rear_obstacle_laser_layer/base_scan/sensor_frame" value="$(arg robot_namespace)/base_rear_laser_link"/> <!-- For Omni base-->
-    <param if="$(arg multiple)" name="local_costmap/obstacle_rgbd_layer/rgbd_scan/sensor_frame" value="$(arg robot_namespace)/base_footprint"/>
     <param if="$(arg multiple)" name="local_costmap/obstacle_sonar_layer/sonar_cloud/sensor_frame" value="$(arg robot_namespace)/base_link"/>
     <param if="$(arg multiple)" name="local_costmap/obstacle_sonar_layer/sonar_max_range_cloud/sensor_frame" value="$(arg robot_namespace)/base_link"/>
-    <param if="$(arg multiple)" name="local_costmap/obstacle_vo_layer/vo_cloud/sensor_frame" value="$(arg robot_namespace)/base_link"/>
 
-    <param if="$(arg multiple)" name="PalLocalPlanner/robot_namespace" value="$(arg robot_namespace)"/>
     <param if="$(arg multiple)" name="local_planner/laser_frame" value="$(arg robot_namespace)/base_laser_link"/>
     <param if="$(arg multiple)" name="local_planner/base_frame" value="$(arg robot_namespace)/base_link"/>
   </node>

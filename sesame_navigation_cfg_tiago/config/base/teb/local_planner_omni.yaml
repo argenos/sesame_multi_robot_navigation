@@ -3,7 +3,7 @@ base_local_planner: teb_local_planner/TebLocalPlannerROS
 TebLocalPlannerROS:
 
   odom_topic: mobile_base_controller/odom
-  map_frame: map
+  map_frame: $(arg robot_namespace)/map
     
   # Trajectory
   

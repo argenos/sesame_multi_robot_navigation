@@ -39,7 +39,7 @@
   <!-- Twist mux -->
   <include file="$(find omni_base_bringup)/launch/twist_mux.launch">
     <arg name="cmd_vel_out" value="mobile_base_controller/cmd_vel" />
-  </include/>
+  </include>
 
   <!-- Joystick controller -->
   <include file="$(find omni_base_bringup)/launch/joystick_teleop.launch"/>

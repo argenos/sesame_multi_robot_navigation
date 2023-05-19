@@ -26,9 +26,6 @@ TebLocalPlannerROS:
   acc_lim_x: 0.2
   acc_lim_theta: !degrees 45.0
   is_footprint_dynamic: true
-  footprint_model:
-    type: "circular"
-    radius: 0.275
 
   # GoalTolerance
 

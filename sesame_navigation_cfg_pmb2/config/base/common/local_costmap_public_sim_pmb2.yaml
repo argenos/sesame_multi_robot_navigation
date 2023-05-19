@@ -2,8 +2,8 @@
 local_costmap:
   map_type: costmap
 
-  global_frame    : odom
-  robot_base_frame: base_footprint
+  global_frame    : $(arg robot_namespace)/odom
+  robot_base_frame: $(arg robot_namespace)/base_footprint
 
   update_frequency : 5.0
   publish_frequency: 1.0
@@ -24,7 +24,7 @@ local_costmap:
     combination_method: 0 # can erase static layer
 
     base_scan:
-      sensor_frame: base_laser_link
+      sensor_frame: $(arg robot_namespace)/base_laser_link
       data_type: LaserScan
       topic: scan
       expected_update_rate: 0.3
@@ -37,8 +37,8 @@ local_costmap:
 
   obstacle_sonar_layer:
     enabled: false
-    ns: ""
-    topics: ["/sonar_base"]
+    ns: "$(arg robot_namespace)/"
+    topics: ["sonar_base"]
     no_readings_timeout: 0.0
     clear_threshold: 0.20
     mark_threshold: 0.80

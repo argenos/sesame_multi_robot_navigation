@@ -28,7 +28,6 @@
 
   <!-- Localization -->
   <include file="$(find sesame_navigation_cfg_common)/launch/localization_$(arg localization).launch">
-    <arg name="localization" value="$(arg localization)"/>
     <arg name="multiple" value="$(arg multiple)"/>
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
     <arg name="base_type" value="$(arg base_type)"/>

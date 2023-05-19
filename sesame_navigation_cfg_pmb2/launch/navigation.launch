@@ -60,6 +60,7 @@
     <arg name="multiple"        value="$(arg multiple)"/>
     <arg name="rgbd_sensors"    value="$(arg rgbd_sensors)"/>
     <arg name="config_base_path" value="$(arg navigation_cfg)"/>
+    <arg name="base_type"         value="§(arg base_type)"/>
   </include>
 
   <include file="$(find robot_pose)/launch/robot_pose.launch">

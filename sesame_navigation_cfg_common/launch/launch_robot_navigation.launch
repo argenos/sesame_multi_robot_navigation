@@ -62,7 +62,7 @@
             <arg name="public_sim"     value="$(arg public_sim)"/>
             <arg name="robot_namespace"      value="$(arg robot_name)"/>
             <arg name="multiple"       value="true"/>
-            <arg name="navigation_cfg" value="$(find sesame_navigation_cfg_tiago)"/>
+            <arg name="navigation_cfg" value="$(arg navigation_cfg)"/>
         </include>
 
         <include file="$(find waypoint_dispatcher)/launch/waypoint_dispatcher.launch">

@@ -2,8 +2,8 @@
 global_costmap:
   map_type: costmap
 
-  global_frame    : map
-  robot_base_frame: base_footprint
+  global_frame    : $(arg robot_namespace)/map
+  robot_base_frame: $(arg robot_namespace)/base_footprint
 
   update_frequency : 5.0
   publish_frequency: 1.0
@@ -27,7 +27,7 @@ global_costmap:
     combination_method: 0 # can erase static layer
 
     base_scan:
-      sensor_frame: base_front_laser_link
+      sensor_frame: $(arg robot_namespace)/base_front_laser_link
       data_type: LaserScan
       topic: scan_front_raw
       expected_update_rate: 0.3
@@ -44,7 +44,7 @@ global_costmap:
     combination_method: 0 # can erase static layer
 
     base_scan:
-      sensor_frame: base_rear_laser_link
+      sensor_frame: $(arg robot_namespace)/base_rear_laser_link
       data_type: LaserScan
       topic: scan_rear_raw
       expected_update_rate: 0.3
