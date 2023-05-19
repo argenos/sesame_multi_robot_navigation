@@ -45,7 +45,9 @@
   <node pkg="tf_lookup" type="tf_lookup" name="tf_lookup" output="screen"/>
 
   <!-- Twist mux -->
-  <include file="$(find tiago_bringup)/launch/twist_mux.launch"/>
+  <include file="$(find tiago_bringup)/launch/twist_mux.launch">
+    <arg name="cmd_vel_out" value="mobile_base_controller/cmd_vel" />
+  </include/>
 
   <!-- Republish image_raw to image_rect_color to have the same available topic -->
   <node name="image_raw_to_rect_color_relay" pkg="topic_tools" type="relay" args="xtion/rgb/image_raw xtion/rgb/image_rect_color" />

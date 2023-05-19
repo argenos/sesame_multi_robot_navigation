@@ -36,6 +36,8 @@
   </node>
 
   <!-- Twist mux -->
-  <include file="$(find pmb2_bringup)/launch/twist_mux.launch"/>
+  <include file="$(find pmb2_bringup)/launch/twist_mux.launch">
+    <arg name="cmd_vel_out" value="mobile_base_controller/cmd_vel" />
+  </include/>
 
 </launch>
