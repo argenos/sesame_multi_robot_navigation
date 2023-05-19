@@ -48,7 +48,7 @@
     <arg if="$(arg multiple)" name="map_frame" value="/$(arg robot_namespace)/map"/>
     <arg if="$(arg multiple)" name="base_frame" value="/$(arg robot_namespace)/base_footprint"/>
     <arg name="is_fleet"        value="$(arg is_fleet)"/>
-    <arg name="navigation_cfg" default="$(arg navigation_cfg)"/>
+    <arg name="navigation_cfg" value="$(arg navigation_cfg)"/>
   </include>
 
   <!-- Planning -->
