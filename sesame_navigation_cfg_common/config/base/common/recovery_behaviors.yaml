@@ -1,0 +1,8 @@
+recovery_behaviors:
+  - name: 'costmap_reset_far'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+  - name: 'costmap_reset_close'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+  - name: 'rotate_recovery'
+    type: 'rotate_recovery/RotateRecovery'
+

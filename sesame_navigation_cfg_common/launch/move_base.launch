@@ -25,7 +25,7 @@
   <arg name="rgbd_suffix" value=""      unless="$(arg rgbd_sensors)"/>
 
   <arg name="base_type"     default="pmb2"/>
-  <arg name="base_type_suffix" value="" unless="$(eval arg('base_type') == 'omni_base')"/>
+  <arg name="base_type_suffix" value="_pmb2" unless="$(eval arg('base_type') == 'omni_base')"/>
   <arg name="base_type_suffix" value="_omni" if="$(eval arg('base_type') == 'omni_base')"/>
 
   <arg name="multiple" default="false"/>
@@ -35,10 +35,16 @@
     <remap from="odom"    to="$(arg odom)"/>
     <remap from="cmd_vel" to="$(arg cmd_vel)"/>
 
+  <!-- Common params -->
+    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/common/move_base.yaml"/>
+    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/common/recovery_behaviors.yaml"/>
+
+    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/global_planner/$(arg global_planner).yaml" subst_value="true"/>
+    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/$(arg local_planner)/local_planner$(arg base_type_suffix).yaml" subst_value="true"/>
+
+  <!-- Platform-specific params -->
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/move_base.yaml"/>
-    <!-- <rosparam command="load" file="$(arg config_base_path)/config/base/common/recovery_behaviors$(arg rgbd_suffix).yaml"/> -->
-    <!-- omni_base -->
-    <rosparam command="load" file="$(arg config_base_path)/config/base/common/recovery_behaviors.yaml"/>
+    <rosparam command="load" file="$(arg config_base_path)/config/base/common/recovery_behaviors$(arg base_type_suffix).yaml"/>
 
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/global_costmap_plugins$(arg sim_suffix)$(arg rgbd_suffix)$(arg base_type_suffix).yaml" subst_value="true"/>
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/global_costmap$(arg sim_suffix)$(arg base_type_suffix).yaml" subst_value="true"/>

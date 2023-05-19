@@ -59,7 +59,7 @@
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
     <arg name="multiple"        value="$(arg multiple)"/>
     <arg name="rgbd_sensors"    value="$(arg rgbd_sensors)"/>
-    <arg name="config_base_path" value="$(find pal_navigation_cfg_pmb2)"/>
+    <arg name="config_base_path" value="$(arg navigation_cfg)"/>
   </include>
 
   <include file="$(find robot_pose)/launch/robot_pose.launch">
