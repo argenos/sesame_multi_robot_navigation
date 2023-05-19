@@ -22,10 +22,16 @@
 
   <!-- Map -->
   <!-- Localization or Mapping state -->
-  <group if="$(arg public_sim)">
-    <node pkg="pal_navigation_sm" type="navigation.sh" name="navigation"
-        args="tiago $(arg state) $(arg localization) $(arg mapping) $(arg map) $(arg scan_topic) $(arg laser_model) $(arg base_type) $(arg multiple) $(arg robot_namespace)" output="screen"/>
-  </group>
+  <include file="$(find sesame_navigation_cfg_common)/launch/localization.launch" if="$(eval arg('state')== 'localization')">
+    <arg name="localization"           value="$(arg localization)"/>
+    <arg name="mapping"      value="$(arg mapping)"/>
+    <arg name="map"          value="$(arg map)"/>
+    <arg name="multiple"        value="$(arg multiple)"/>
+    <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+    <arg name="scan_topic" value="$(arg scan_topic)"/>
+    <arg name="laser_model" value="$(arg laser_model)"/>
+    <arg name="base_type" value="$(arg base_type)"/>
+  </include>
 
   <!-- Navigation State Machine -->
   <include file="$(find sesame_navigation_cfg_common)/launch/state_machine.launch">
