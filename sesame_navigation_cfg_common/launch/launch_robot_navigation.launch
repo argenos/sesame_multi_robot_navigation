@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="robot_name"/>
+
+    <arg name="public_sim"      default="true"/>
+
+    <arg name="arm"             default="True"/>
+    <arg name="end_effector"    default="pal-hey5"/>
+    <arg name="ft_sensor"       default="schunk-ft"/>
+    <arg name="laser_model"     default="sick-571"/>
+    <arg name="rgbd_sensors"    default="false"/>
+    <arg name="camera_model"    default="orbbec-astra"/>
+    <arg name="world"           default="small_office"/>   <!-- small_office, ... (see ../worlds) -->
+
+    <arg name="planner"         default="base"/>
+    <arg name="global_planner"  default="global_planner"/>
+    <arg name="local_planner"   default="$(eval 'teb' if arg('public_sim') else 'pal')"/>
+    <arg name="localization"    default="amcl"/>
+    <arg name="map"             default="$(env HOME)/.pal/tiago_maps/configurations/$(arg world)"/>
+
+    <arg name="navigation_cfg" default="$(find sesame_navigation_cfg_tiago)"/>
+
+    <group ns="$(arg robot_name)">
+        <node pkg="tf" type="static_transform_publisher" name="$(arg robot_name)_bc" args="0 0 0 0 0 0 1 /map $(arg robot_name)/map 100"/>
+
+        <!-- spawn robot in simulation -->
+        <include file="$(arg navigation_cfg)/launch/spawn_robot.launch">
+            <arg name="multi"  value="multiple:=true namespace:=$(arg robot_name)"/>
+            <arg name="model_name" value="$(arg robot_name)"/>
+            <!-- all -->
+            <arg name="laser_model" value="$(arg laser_model)"/>
+            <!-- pmb2 -->
+            <arg name="rgbd_sensors" value="$(arg rgbd_sensors)"/> <!-- just pmb2_-->
+            <!-- Tiago -->
+            <arg name="arm" value="$(arg arm)"/>
+            <arg name="end_effector" value="$(arg end_effector)"/>
+            <arg name="ft_sensor" value="$(arg ft_sensor)"/>
+            <arg name="camera_model" value="$(arg camera_model)"/>
+        </include>
+
+        <!-- bring up robot -->
+        <include file="$(arg navigation_cfg)/launch/simulation_bringup.launch">
+            <arg name="public_sim"  value="$(arg public_sim)"/>
+            <arg name="multi"  value="multiple:=true namespace:=$(arg robot_name)"/>
+            <arg name="robot_namespace" value="$(arg robot_name)"/>
+            <!-- pmb2 ?? -->
+            <arg name="laser_model" value="$(arg laser_model)"/>
+            <!-- TIAGo -->
+            <arg name="arm" value="$(arg arm)"/>
+            <arg name="end_effector" value="$(arg end_effector)"/>
+            <arg name="ft_sensor" value="$(arg ft_sensor)"/>
+            <arg name="camera_model" value="$(arg camera_model)"/>
+        </include>
+
+        <include file="$(arg navigation_cfg)/launch/navigation.launch">
+            <arg name="state"          value="localization"/>
+            <arg name="planner"        value="$(arg planner)"/>
+            <arg name="global_planner" value="$(arg global_planner)"/>
+            <arg name="local_planner"  value="$(arg local_planner)"/>
+            <arg name="localization"   value="$(arg localization)"/>
+            <arg name="map"            value="$(arg map)"/>
+            <arg name="public_sim"     value="$(arg public_sim)"/>
+            <arg name="robot_namespace"      value="$(arg robot_name)"/>
+            <arg name="multiple"       value="true"/>
+            <arg name="navigation_cfg" value="$(find sesame_navigation_cfg_tiago)"/>
+        </include>
+
+        <include file="$(find waypoint_dispatcher)/launch/waypoint_dispatcher.launch">
+            <arg name="frame" value="$(arg robot_name)/map"/>
+        </include>
+
+    </group>
+</launch>
