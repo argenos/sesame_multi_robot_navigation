@@ -36,11 +36,11 @@
     <remap from="cmd_vel" to="$(arg cmd_vel)"/>
 
   <!-- Common params -->
-    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/common/move_base.yaml"/>
-    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/common/recovery_behaviors.yaml"/>
+    <rosparam command="load" file="$(find sesame_navigation_cfg_common)/config/base/common/move_base.yaml"/>
+    <rosparam command="load" file="$(find sesame_navigation_cfg_common)/config/base/common/recovery_behaviors.yaml"/>
 
-    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/global_planner/$(arg global_planner).yaml" subst_value="true"/>
-    <rosparam command="load" file="$(arg sesame_navigation_cfg_common)/config/base/$(arg local_planner)/local_planner$(arg base_type_suffix).yaml" subst_value="true"/>
+    <rosparam command="load" file="$(find sesame_navigation_cfg_common)/config/base/global_planner/$(arg global_planner).yaml" subst_value="true"/>
+    <rosparam command="load" file="$(find sesame_navigation_cfg_common)/config/base/$(arg local_planner)/local_planner.yaml" subst_value="true"/>
 
   <!-- Platform-specific params -->
     <rosparam command="load" file="$(arg config_base_path)/config/base/common/move_base.yaml"/>
