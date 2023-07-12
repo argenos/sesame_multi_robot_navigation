@@ -11,6 +11,7 @@
     <arg name="rgbd_sensors"    default="false"/>
     <arg name="camera_model"    default="orbbec-astra"/>
     <arg name="world"           default="small_office"/>   <!-- small_office, ... (see ../worlds) -->
+    <arg name="base_type"       default="pmb2"/>
 
     <arg name="planner"         default="base"/>
     <arg name="global_planner"  default="global_planner"/>
@@ -36,6 +37,7 @@
             <arg name="end_effector" value="$(arg end_effector)"/>
             <arg name="ft_sensor" value="$(arg ft_sensor)"/>
             <arg name="camera_model" value="$(arg camera_model)"/>
+            <arg name="base_type" value="$(arg base_type)"/>
         </include>
 
         <!-- bring up robot -->
@@ -50,6 +52,7 @@
             <arg name="end_effector" value="$(arg end_effector)"/>
             <arg name="ft_sensor" value="$(arg ft_sensor)"/>
             <arg name="camera_model" value="$(arg camera_model)"/>
+            <arg name="base_type" value="$(arg base_type)"/>
         </include>
 
         <include file="$(arg navigation_cfg)/launch/navigation.launch">
@@ -63,6 +66,7 @@
             <arg name="robot_namespace"      value="$(arg robot_name)"/>
             <arg name="multiple"       value="true"/>
             <arg name="navigation_cfg" value="$(arg navigation_cfg)"/>
+            <arg name="base_type" value="$(arg base_type)"/>
         </include>
 
         <include file="$(find waypoint_dispatcher)/launch/waypoint_dispatcher.launch">

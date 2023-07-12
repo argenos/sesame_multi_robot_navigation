@@ -10,6 +10,7 @@
   <arg name="end_effector"/>
   <arg name="ft_sensor"/>
   <arg name="camera_model"/>
+  <arg name="base_type"/>
 
   <rosparam ns="pal_robot_info" param="type">"omni_base"</rosparam>
 
