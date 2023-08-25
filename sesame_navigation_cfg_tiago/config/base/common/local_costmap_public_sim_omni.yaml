@@ -54,7 +54,7 @@ local_costmap:
       obstacle_range: 5.5
       
   inflation_layer:
-    enabled            : false # not used for pal_local_planner
+    enabled            : true # not used for pal_local_planner
     inflation_radius   : 0.55
     cost_scaling_factor: 25.0
 
