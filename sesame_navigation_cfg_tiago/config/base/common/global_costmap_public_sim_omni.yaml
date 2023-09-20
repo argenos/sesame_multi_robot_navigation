@@ -1,6 +1,5 @@
 # Independent settings for the planner's costmap
 global_costmap:
-  map_type: costmap
 
   global_frame    : $(arg robot_namespace)/map
   robot_base_frame: $(arg robot_namespace)/base_footprint
@@ -13,7 +12,7 @@ global_costmap:
 
   footprint: [[ 0.35, 0.24], [-0.35, 0.24], [-0.35, -0.24], [ 0.35, -0.24]]
 
-  #plugins are loaded in a separate yaml file
+  #plugins are loaded in a separate file
 
   static_layer:
     enabled  : true
@@ -33,8 +32,8 @@ global_costmap:
       inf_is_valid: true
       marking: true
       clearing: true
-      raytrace_range: 6.0
-      obstacle_range: 5.5
+      raytrace_range: 4.0
+      obstacle_range: 3.0
 
   rear_obstacle_laser_layer:
     enabled: true
@@ -50,11 +49,10 @@ global_costmap:
       inf_is_valid: true
       marking: true
       clearing: true
-      raytrace_range: 6.0
-      obstacle_range: 5.5
+      raytrace_range: 4.0
+      obstacle_range: 3.0
 
   inflation_layer:
     enabled            : true
-    inflation_radius   : 0.6
+    inflation_radius   : 0.55
     cost_scaling_factor: 25.0
-

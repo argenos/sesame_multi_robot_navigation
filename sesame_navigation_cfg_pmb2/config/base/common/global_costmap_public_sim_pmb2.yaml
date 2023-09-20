@@ -1,6 +1,5 @@
 # Independent settings for the planner's costmap
 global_costmap:
-  map_type: costmap
 
   global_frame    : $(arg robot_namespace)/map
   robot_base_frame: $(arg robot_namespace)/base_footprint

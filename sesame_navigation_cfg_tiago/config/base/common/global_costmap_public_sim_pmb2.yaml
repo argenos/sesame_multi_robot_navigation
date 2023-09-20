@@ -1,6 +1,5 @@
 # Independent settings for the planner's costmap
 global_costmap:
-  # map_type: costmap
 
   global_frame    : $(arg robot_namespace)/map
   robot_base_frame: $(arg robot_namespace)/base_footprint
@@ -8,14 +7,12 @@ global_costmap:
   update_frequency : 10.0
   publish_frequency: 1.0
 
-  transform_tolerance: 0.2
-
   track_unknown_space: true
   unknown_cost_value : 255
 
   robot_radius: 0.275
 
-  #plugins are loaded on a separate file
+  #plugins are loaded in a separate file
 
   static_layer:
     enabled  : true
@@ -40,8 +37,8 @@ global_costmap:
 
   obstacle_sonar_layer:
     enabled: false
-    ns: "/$(arg robot_namespace)"
-    topics: ["sonar_base"]
+    ns: "$(arg robot_namespace)/"
+    topics: ["/sonar_base"]
     no_readings_timeout: 0.0
     clear_threshold: 0.20
     mark_threshold: 0.80

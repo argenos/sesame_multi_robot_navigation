@@ -1,12 +1,10 @@
 # Independent settings for the local costmap
 local_costmap:
-  map_type: costmap
 
   global_frame    : $(arg robot_namespace)/odom
   robot_base_frame: $(arg robot_namespace)/base_footprint
-  transform_tolerance: 0.2
 
-  update_frequency : 10.0
+  update_frequency : 5.0
   publish_frequency: 1.0
 
   rolling_window: true
@@ -16,13 +14,13 @@ local_costmap:
 
   footprint: [[ 0.35, 0.24], [-0.35, 0.24], [-0.35, -0.24], [ 0.35, -0.24]]
 
-  #plugins are loaded in a separate yaml file
+  #plugins are loaded in a separate file
 
 
   front_obstacle_laser_layer:
     enabled: true
     observation_sources: base_scan
-    combination_method: 1 # cannot erase static layer
+    combination_method: 0 # can erase static layer
 
     base_scan:
       sensor_frame: $(arg robot_namespace)/base_front_laser_link
@@ -39,7 +37,7 @@ local_costmap:
   rear_obstacle_laser_layer:
     enabled: true
     observation_sources: base_scan
-    combination_method: 1 # cannot erase static layer
+    combination_method: 0 # can erase static layer
 
     base_scan:
       sensor_frame: $(arg robot_namespace)/base_rear_laser_link
@@ -52,9 +50,8 @@ local_costmap:
       clearing: true
       raytrace_range: 6.0
       obstacle_range: 5.5
-      
-  inflation_layer:
-    enabled            : true # not used for pal_local_planner
-    inflation_radius   : 0.55
-    cost_scaling_factor: 25.0
 
+  inflation_layer:
+    enabled            : true
+    inflation_radius   : 0.55
+    cost_scaling_factor: 5.0

@@ -4,7 +4,7 @@ local_costmap:
   global_frame    : $(arg robot_namespace)/odom
   robot_base_frame: $(arg robot_namespace)/base_footprint
 
-  update_frequency : 10.0
+  update_frequency : 5.0
   publish_frequency: 1.0
 
   rolling_window: true
@@ -14,7 +14,8 @@ local_costmap:
 
   robot_radius: 0.275
 
-  #plugins are loaded on a separate file
+  #plugins are loaded in a separate file
+
 
   obstacle_laser_layer:
     enabled: true
@@ -30,12 +31,12 @@ local_costmap:
       inf_is_valid: true
       marking: true
       clearing: true
-      raytrace_range: 4.0
-      obstacle_range: 3.0
+      raytrace_range: 6.0
+      obstacle_range: 5.5
 
   obstacle_sonar_layer:
     enabled: false
-    ns: "/$(arg robot_namespace)"
+    ns: "$(arg robot_namespace)/"
     topics: ["sonar_base"]
     no_readings_timeout: 0.0
     clear_threshold: 0.20
@@ -44,5 +45,5 @@ local_costmap:
 
   inflation_layer:
     enabled            : true
-    inflation_radius   : 0.1
+    inflation_radius   : 0.55
     cost_scaling_factor: 5.0
